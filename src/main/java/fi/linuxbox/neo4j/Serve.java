@@ -4,9 +4,10 @@ import org.apache.commons.cli.ParseException;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.graphdb.factory.GraphDatabaseSettings;
-import org.neo4j.graphdb.factory.GraphDatabaseSettings.BoltConnector;
+import org.neo4j.kernel.configuration.BoltConnector;
 
 import static java.lang.Runtime.getRuntime;
+import static org.neo4j.graphdb.factory.GraphDatabaseSettings.allow_store_upgrade;
 import static org.neo4j.graphdb.factory.GraphDatabaseSettings.read_only;
 
 /**
@@ -26,7 +27,7 @@ public class Serve {
         if (cli.helpShown())
             return;
 
-        final BoltConnector bolt = GraphDatabaseSettings.boltConnector( "0" );
+        final BoltConnector bolt = new BoltConnector( "0" );
 
         final GraphDatabaseService graph = new GraphDatabaseFactory()
                 // Where is it?
@@ -34,9 +35,11 @@ public class Serve {
                 // Allow connections via BOLT
                 .setConfig(bolt.type, "BOLT")
                 .setConfig(bolt.enabled, "true")
-                .setConfig(bolt.address, cli.getAddress())
+                .setConfig(bolt.listen_address, cli.getAddress())
                 // Read-only
                 .setConfig(read_only, cli.getReadOnly())
+                // Automatically upgrade storage format
+                .setConfig(allow_store_upgrade, "true")
                 .newGraphDatabase();
 
         getRuntime().addShutdownHook(new Thread(graph::shutdown));

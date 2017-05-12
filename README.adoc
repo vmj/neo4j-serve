@@ -9,7 +9,7 @@ with an embedded Neo4J server,
 and imported some data into it.
 
 Now the data is there in a directory,
-and you're wondering how to use Neo4J browser to visualize and play with the data.
+and you're wondering how to use Neo4J Browser to visualize and play with the data.
 
 It's OK.  I did that, too.
 
@@ -41,3 +41,13 @@ After a little while, you should see your data in the browser.
 ### Caveats
 
 You need to stop this server whenever you want to modify the data via the original method.
+
+Possible compatibility issues.
+There are three versions of Neo4J in play here:
+the server embedded in your app,
+the client in Neo4J Browser,
+and the server embedded in neo4j-serve.
+This application WILL upgrade the storage format.
+You may want to make sure you're using newish Neo4J,
+both when embedding it to the Java app
+and when connecting to this application.
