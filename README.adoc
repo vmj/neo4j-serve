@@ -1,0 +1,41 @@
+# Neo4J serve
+
+### The problem
+
+So you whipped up a little Java app,
+with an embedded Neo4J server,
+and imported some data into it.
+
+Now the data is there in a directory,
+and you're wondering how to use Neo4J browser to visualize and play with the data.
+
+It's OK.  I did that, too.
+
+### The solution
+
+All you need to do is to serve the directory to the browser.
+
+#### How?
+
+Build this project:
+
+  ./gradlew iD
+
+Launch the resulting application:
+
+  ./build/install/neo4j-serve/bin/neo4j-serve -p 9000 ../path/to/your/database
+
+You will also need to start the neo4j service (and that is also the reason you cannot use the
+default port for neo4j-serve):
+
+  neo4j start
+
+Now visit the http://localhost:7474 in your browser
+and, in the Settings tab, under "Network Connection",
+set the Bolt URI to "localhost:9000".
+
+After a little while, you should see your data in the browser.
+
+### Caveats
+
+You need to stop this server whenever you want to modify the data via the original method.

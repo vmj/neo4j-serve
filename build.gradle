@@ -1,0 +1,20 @@
+group 'org.slackstep'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+mainClassName = 'fi.linuxbox.neo4j.Serve'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'commons-cli:commons-cli:1.4'
+
+    compile 'org.neo4j:neo4j:3.1.3'
+    compile 'org.neo4j:neo4j-bolt:3.1.3'
+}
