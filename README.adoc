@@ -1,8 +1,8 @@
-image:https://travis-ci.org/vmj/neo4j-serve.svg?branch=master["Build Status", link="https://travis-ci.org/vmj/neo4j-serve"]
-
 # Neo4J serve
 
-### The problem
+image:https://travis-ci.org/vmj/neo4j-serve.svg?branch=master["Build Status", link="https://travis-ci.org/vmj/neo4j-serve"]
+
+## The problem
 
 So you whipped up a little Java app,
 with an embedded Neo4J server,
@@ -13,11 +13,11 @@ and you're wondering how to use Neo4J browser to visualize and play with the dat
 
 It's OK.  I did that, too.
 
-### The solution
+## The solution
 
 All you need to do is to serve the directory to the browser.
 
-#### How?
+### How?
 
 Build this project:
 
