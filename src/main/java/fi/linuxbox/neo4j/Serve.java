@@ -3,11 +3,10 @@ package fi.linuxbox.neo4j;
 import org.apache.commons.cli.ParseException;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
-import org.neo4j.graphdb.factory.GraphDatabaseSettings;
 import org.neo4j.kernel.configuration.BoltConnector;
 
 import static java.lang.Runtime.getRuntime;
-import static org.neo4j.graphdb.factory.GraphDatabaseSettings.allow_store_upgrade;
+import static org.neo4j.graphdb.factory.GraphDatabaseSettings.allow_upgrade;
 import static org.neo4j.graphdb.factory.GraphDatabaseSettings.read_only;
 
 /**
@@ -39,7 +38,7 @@ public class Serve {
                 // Read-only
                 .setConfig(read_only, cli.getReadOnly())
                 // Automatically upgrade storage format
-                .setConfig(allow_store_upgrade, "true")
+                .setConfig(allow_upgrade, "true")
                 .newGraphDatabase();
 
         getRuntime().addShutdownHook(new Thread(graph::shutdown));

@@ -1,7 +1,7 @@
 group 'org.slackstep'
 version '1.0-SNAPSHOT'
 
-ext.neo4j = '3.2.2'
+ext.neo4j = '3.3.0'
 
 apply plugin: 'java'
 apply plugin: 'application'
